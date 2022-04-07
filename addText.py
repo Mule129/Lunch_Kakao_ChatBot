@@ -7,9 +7,10 @@ from PIL import Image, ImageFont, ImageDraw
 
 def color_list(t):
     """
-    색상리스트 "color"
+    color list
 
-    1번 = 흰색, 2번 = 검은색, 3번 = 회색 . . .
+    :param t: 1-흰색 2-검정색 3-회색 4~15-연한무지개 16~27-진한무지개
+    :return: color str(list)
     """
     color = ["#FFFFFF", "#000000", "#555555",
              "#FFD8D8", "#FAE0D4", "#FAECC5", "#FAF4C0", "#E4F7BA", "#CEFBC9",
@@ -20,13 +21,19 @@ def color_list(t):
 #print(color_list.__doc__)
 
 def random_color()->int:
+    """
+    random color create
+
+    :return: random color str(list)
+    """
     t = random.randint(3,26)
     number = color_list(t)
     return number
 
-def day():
+def SAT_dday():
     """
-    날짜계산
+    수능(korean SAT) dday 출력 함수
+
     :return:합산 날짜 출력
     """
     dday = dt.date(year=2022, month=11, day=17)
@@ -37,7 +44,15 @@ def day():
 
     return dday
 
-def day_0(o : int):
+def s_dday(o : int):
+    """
+    내신 시험(scholl exam) dday 출력 함수
+
+    파라미터 o 제거 -> 가장 인접한 시험 출력
+
+    :param o: 시험 종류 
+    :return: 남은 날짜(dday)
+    """
     day_list = ["2022-4-25","2022-6-27"]#스크래핑 하기
     d_year, d_month, d_day = day_list[o].split("-")
     dday = dt.date(year=int(d_year),month=int(d_month),day=int(d_day))
@@ -48,23 +63,25 @@ def day_0(o : int):
 
     return dday
 
-def test_day(t : int, o : int) ->int:
+def exam_day(t : int, o : int) ->int:
     """
+    수능, 내신 dday 출력
+
     :param t: 시험 종류(0 = 내신, 1 = 수능
     :param o: 몇번째 시험인지 ..
     :return: date type로 출력
     """
     if t == 1:
-        dday = day()
+        dday = SAT_dday()
     elif t == 0:
-        dday = day_0(o)
+        dday = s_dday(o)
 
     return dday
 
 
 def new_image(xy_size : tuple, color : int):
     """
-    새 이미지 생성
+    새 랜덤 배경색을 가진 이미지 생성
 
     xy_size = 크기(튜플형), color = 배경색
     """
@@ -72,16 +89,30 @@ def new_image(xy_size : tuple, color : int):
 
     return new_image
 
-def find_text(data):
-    for x in data:
-        x.find(str(dt.date.today()).split("-")[1])
-
 def week_day(number):
+    """
+    번호:날짜(dictionary type)
+
+    :param number:날짜에 해당하는 숫자
+    :return: str 형식 날짜
+
+    """
     data = {0: '월요일', 1:'화요일', 2:'수요일', 3:'목요일', 4:'금요일', 5:'토요일', 6:'일요일'}
 
     return data[number]
 
 def lunch(to_month : str)->str:
+    r"""
+    1. 날짜 파라미터(매개변수)를 입력받으면 bs4와 requests 모듈을 이용하여 급식조회사이트에서 그 달의 급식정보 표 조회
+    2. 가져온 급식정보 표에서 re모듈-줄바꿈(\n) 횟수를 공백으로 치환, 이를 이용하여 날짜별 데이터 분리 -> eat_list list에 저장
+    3. datetime.date.today 함수를 이용하여 오늘의 날짜 탐색
+    4. for문과 find 함수를 이용하여 eat_list 내에 오늘의 날짜와 일치하는 급식 데이터 검출
+
+    수정예정 - to_month 파라미터 제거, today 함수를 이용하여 자체적으로 오늘의 날짜 탐색
+
+    :param to_month: 오늘의 날짜(ex:2001년02월02일 -> 200102 #월까지만 입력)
+    :return: 오늘의 급식정보
+    """
     month = to_month +".html"
     url = "https://school.koreacharts.com/school/meals/B000012894/"+month
 
@@ -123,7 +154,38 @@ def lunch(to_month : str)->str:
 
     return eat_list[int(today)]
 
-#fnt = ImageFont.load("BMJUA_ttf.ttf")#<-비트맵(픽셀) 글꼴 파일 오픈
+print(lunch.__doc__)# r""" doc test
+
+def lunch_slice():
+    """
+    데이터 전처리(당일 급식 데이터 뒤에 붙은 성분표시 제거, 날짜 삭제)
+    
+    :return: 전처리 완료된 급식데이터
+    """
+    name = lunch(str(today)).split('\n')
+    data_list = []
+
+    for i in range(len(name)):#name 리스트 길이만큼 for문 실행
+        data_pros = re.sub(r'[0-9]+', '', name[i])#problem : 날짜 또한 제거되어버림.
+        if i != 0:
+            data_list.append(data_pros.replace('.','') + str('\n'))
+    print("a result : ", data_list)
+
+    result = ''.join(s for s in data_list)#
+
+    return(result)
+
+def day_()->list:
+    """
+    today 함수의 dt 타입을 str 형식으로 변환
+    
+    :return: list   ex) [2022,02,02]
+    """
+    to_day = dt.date.today()
+    to_day = str(to_day).split("-")
+    return to_day
+
+#fnt = ImageFont.load("BMJUA_ttf.ttf")#<-비트맵(픽셀)형식 글꼴 파일 오픈
 image = new_image((1000, 1000), color_list(random.randint(3,26)))
 
 fntSet = ImageFont.truetype("BMJUA_ttf.ttf", size=130)
@@ -142,7 +204,7 @@ today = today[0]+today[1]
 draw.text((250,270), str("수능까지"), color_list(0),
           font=ImageFont.truetype("BMJUA_ttf.ttf", size=50),
           anchor="mm", align=10, stroke_width=5, stroke_fill=color_list(2))
-draw.text((500,350), str(day()), color_list(0),
+draw.text((500,350), str(SAT_dday()), color_list(0),
           fntSet, anchor="mm", align=10, stroke_width=10, stroke_fill=color_list(2))
 draw.text((500,450), str("화이팅"), color_list(0),
           font=ImageFont.truetype("BMJUA_ttf.ttf", size=30),
@@ -151,7 +213,7 @@ draw.text((500,450), str("화이팅"), color_list(0),
 draw.text((250,50), str("중간고사까지"), color_list(0),
           font=ImageFont.truetype("BMJUA_ttf.ttf", size=50),
           anchor="mm", align=10, stroke_width=5, stroke_fill=color_list(2))
-draw.text((500,150), str(test_day(0,0)), color_list(0),
+draw.text((500,150), str(exam_day(0,0)), color_list(0),
           fntSet, anchor="mm", align=10, stroke_width=10, stroke_fill=color_list(2))
 #오늘 날짜
 draw.text((800,50), str(dt.date.today()), color_list(0),
@@ -166,5 +228,3 @@ add_image = Image.open("제작중 로고_3.png")
 image.paste(im=add_image, box = (550,550 ))
 image.show()
 image.save("test_image.png", format="png")
-
-#print(len(a))
