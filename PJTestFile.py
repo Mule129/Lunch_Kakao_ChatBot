@@ -2,5 +2,12 @@ import datetime as dt
 import random
 
 today = str(dt.date.today()).split("-")
-today = today[0]+today[1]
+today = today[0]+today[1]+today[2]
 print(today)
+
+
+a = {"mealServiceDietInfo":[{"head":[{"list_total_count":2},{"RESULT":{"CODE":"INFO-000","MESSAGE":"x"}}]},{"row":[{"t":"N10","y":"y","x":"x","r":"r","q":"q","w":"중식","MLSV_YMD":"20220509","MLSV_FGR":"1234","DDISH_NM":"바압**","CAL_INFO":"724.6 Kcal","NTR_INFO":"성분","MLSV_FROM_YMD":"20220509","MLSV_TO_YMD":"20220509"},{"ATPT_OFCDC_SC_CODE":"N10","ATPT_OFCDC_SC_NM":"충청남도교육청","SD_SCHUL_CODE":"8140265","SCHUL_NM":"천안청수고등학교","MMEAL_SC_CODE":"3","MMEAL_SC_NM":"석식","MLSV_YMD":"20220509","MLSV_FGR":"182","DDISH_NM":"바압**","CAL_INFO":"944.2 Kcal","NTR_INFO":"성분","MLSV_FROM_YMD":"20220509","MLSV_TO_YMD":"20220509"}]}]}
+
+print(a["mealServiceDietInfo"][1]["row"][0]["DDISH_NM"])
+
+{"mealServiceDietInfo":[{"head":[{"list_total_count":2},{"RESULT":{"CODE":"INFO-000","MESSAGE":"정상 처리되었습니다."}}]},{"row":[{"ATPT_OFCDC_SC_CODE":"N10","ATPT_OFCDC_SC_NM":"충청남도교육청","SD_SCHUL_CODE":"8140265","SCHUL_NM":"천안청수고등학교","MMEAL_SC_CODE":"2","MMEAL_SC_NM":"중식","MLSV_YMD":"20220509","MLSV_FGR":"1234","DDISH_NM":"닭 마크니커리라이스  (2.5.6.13.15.)<br/>콩나물국  (5.13.)<br/>계란찜  (1.2.5.6.10.13.)<br/>남도떡갈비+파채  (2.5.6.10.12.13.)<br/>배추김치  (9.13.)<br/>다돼지 떡하니  (2.5.6.13.)","ORPLC_INFO":"쌀 : 국내산<br/>김치류 : 국내산<br/>고춧가루(김치류) : 국내산<br/>쇠고 기(종류) : 국내산(한우)<br/>돼지고기 : 국내산<br/>닭고기 : 국내산<br/>오리고기 : 국내산<br/>쇠고기 식육가공품 : 국내산<br/>돼지고기 식육가공품 : 국내산<br/>닭고기 식육가공품 : 국내산<br/>오리고기 가공품 : 국내산<br/>낙지 : 국내산<br/>고등어 : 국내산<br/>갈치 : 국내산<br/>오징어 : 국내산<br/>꽃게 : 국내 산<br/>참조기 : 국내산<br/>콩 : 국내산","CAL_INFO":"724.6 Kcal","NTR_INFO":"탄수화물(g) : 107.3<br/>단백질(g) : 33.4<br/>지방(g) : 21.1<br/>비타민A(R.E) : 405.0<br/>티아민(mg) : 0.6<br/>리보플라빈(mg) : 0.4<br/>비타민C(mg) : 12.6<br/>칼슘(mg) : 241.8<br/>철분(mg) : 4.8","MLSV_FROM_YMD":"20220509","MLSV_TO_YMD":"20220509"},{"ATPT_OFCDC_SC_CODE":"N10","ATPT_OFCDC_SC_NM":"충청남도교육청","SD_SCHUL_CODE":"8140265","SCHUL_NM":"천안청수고등학교","MMEAL_SC_CODE":"3","MMEAL_SC_NM":"석식","MLSV_YMD":"20220509","MLSV_FGR":"182","DDISH_NM":"쇠고기콩나물밥  (5.6.13.)<br/>어묵김치국  (1.5.6.9.13.)<br/>가지나물무침  (5.6.13.)<br/>엣날소시지전  (1.2.5.6.10.15.)<br/>보쌈김치  (9.13.)<br/>참외  ","ORPLC_INFO":"쌀 : 국내산<br/>김치류 : 국내산<br/>고춧가루(김치류) : 국내산<br/>쇠고기(종류) : 국내산(한우)<br/>돼지고기 : 국내산<br/>닭고기 : 국내산<br/>오리고기 : 국내산<br/>쇠고기 식육가공품 : 국내산<br/>돼지고기 식육가 공품 : 국내산<br/>닭고기 식육가공품 : 국내산<br/>오리고기 가공품 : 국내산<br/>낙지 : 국내산<br/>고등어 : 국내산<br/>갈치 : 국내산<br/>오징어 : 국내산<br/>꽃게 : 국내산<br/>참조기 : 국내산<br/>콩 : 국내산","CAL_INFO":"944.2 Kcal","NTR_INFO":"탄수화물(g) : 120.7<br/>단백질(g) : 55.6<br/>지방(g) : 31.8<br/>비타민A(R.E) : 407.0<br/>티아민(mg) : 0.4<br/>리보플라빈(mg) : 0.9<br/>비타민C(mg) : 20.1<br/>칼슘(mg) : 271.0<br/>철분(mg) : 8.2","MLSV_FROM_YMD":"20220509","MLSV_TO_YMD":"20220509"}]}]}
