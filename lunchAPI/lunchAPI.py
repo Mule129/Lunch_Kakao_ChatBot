@@ -5,6 +5,8 @@ import datetime as dt
 import re
 import json
 
+from soupsieve import escape
+
 Dump = str(dt.date.today()).split("-")
 YMD = Dump[0]+Dump[1]+Dump[2]
 
@@ -19,10 +21,12 @@ if True:
     res = requests.get(allUrl)
     html = res.text
     textCode = bs(html, "html.parser")
-    textCode = textCode.get_text()
-    with open("2022_kakaoChatBot/Menu.json", "w") as file:
-        json.dump(textCode, file)
+    #print(json.dumps(textCode.div.encode("utf_8")))
+    #textCode = textCode.get_attribute_list("test",textCode)
+    with open("2022_kakaoChatBot/lunchAPI/Menu.json", "w") as file:
+        json.dump(str(textCode), file)
     print(textCode)
     #print(textCode["mealServiceDietInfo"][1]["row"][0]["DDISH_NM"])
 else:
+#except:
     print("사이트를 불러오는데 실패했습니다")
