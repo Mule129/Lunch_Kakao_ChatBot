@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup as bs
 import requests
 import datetime as dt
 import re
+import json
 
 Dump = str(dt.date.today()).split("-")
 YMD = Dump[0]+Dump[1]+Dump[2]
@@ -18,10 +19,10 @@ if True:
     res = requests.get(allUrl)
     html = res.text
     textCode = bs(html, "html.parser")
-    textCode = {"test":textCode}#.get_text()
-    print(type(textCode))
-    print(textCode.keys())
-    print(textCode["test"].keys())
+    textCode = textCode.get_text()
+    with open("2022_kakaoChatBot/Menu.json", "w") as file:
+        json.dump(textCode, file)
+    print(textCode)
     #print(textCode["mealServiceDietInfo"][1]["row"][0]["DDISH_NM"])
 else:
     print("사이트를 불러오는데 실패했습니다")
