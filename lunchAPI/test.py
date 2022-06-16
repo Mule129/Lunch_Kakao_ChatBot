@@ -1,12 +1,6 @@
-from flask import Flask as fl
-import lunchAPI
-import sys
+import datetime as dt
 
-app = fl(__name__)
-
-@app.route("/")
-def hello_world():
-    return "Hello, World"
-
-if __name__ == "__main__":
-    app.run(host = "https://schoollunchbot.herokuapp.com/")
+date = str(dt.date.today()).split("-")[:2]
+print(*date)
+d = date[0]+date[1]
+print(d)

@@ -77,7 +77,8 @@ def day_str(n:int):
     """
     day_list = [dt.datetime(2022,4,25),dt.datetime(2022,6,27),dt.datetime(2022,10,1),dt.datetime(2022,12,1)]
     month_list = ["중간고사까지", "기말고사까지"]
-    week_list = week_day(dt.date.weekday)
+    print(dt.date.weekday(n))
+    week_list = week_day(dt.date.weekday(n))
     today = dt.date.today
     
     for i in range(4):
@@ -98,7 +99,7 @@ def s_dday():
     :param o: 시험 종류 
     :return: 남은 날짜(dday)
     """
-    day_list = day_str()
+    day_list = day_str(1)
     
     len_list = len(day_list)
 
@@ -229,7 +230,7 @@ def lunch_slice():
 #fnt = ImageFont.load("BMJUA_ttf.ttf")#<-비트맵(픽셀)형식 글꼴 파일 오픈
 image = new_image((1000, 1000), color_list(random.randint(3,26)))
 
-fntSet = ImageFont.truetype("BMJUA_ttf.ttf", size=130)
+fntSet = ImageFont.truetype("font\BMJUA_ttf.ttf", size=130)
 
 draw = ImageDraw.Draw(image)
 font_x, font_y = image.size
@@ -265,7 +266,7 @@ draw.multiline_text((20,500), "오늘의 급식\n"+str(lunch_slice()),
                     font=ImageFont.truetype("BMJUA_ttf.ttf", size=21),
                     spacing=1 , stroke_width=3, stroke_fill=color_list(2))
 #공란
-add_image = Image.open("제작중 로고_3.png")
+add_image = Image.open("SettingIcon.png")
 image.paste(im=add_image, box = (550,550))
 
 #학사정보
