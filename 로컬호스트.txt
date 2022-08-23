@@ -1,0 +1,15 @@
+https://forms.gle/wxwrgGM6R2RSndka6
+
+https://docs.google.com/forms/d/1kvoSR0x8nGlsUoHqM28fEcBLwmSlXPnc4cn_nVW9j0o/edit?usp=sharing
+
+로컬호스트(local host) - 127.0.0.1 왜쓰는지,
+api
+=> www.html5rocks.com/en/tutorials/internals/howbrowserswork/
+
+spy++를 이용한 카카오톡 봇
+=> https://airfox1.tistory.com/3?category=1118519
+
+https://joogaem.com/entry/moodle-카카오톡-나에게-보내기-api-연결하기-1
+
+카카오톡 api 키
+rel6DpW3U8L3RewFTl0Cl0xKl3JrwXnx86UVQ1R6OKt1R7_EZzgs0qw1D1GokYbof0KwaAorDR8AAAGAvWhVOQ
